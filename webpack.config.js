@@ -8,11 +8,11 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Todo List',
-    }),
-  ],
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     title: 'Todo List',
+  //   }),
+  // ],
   devServer: {
     static: './dist',
   },
