@@ -1,0 +1,108 @@
+@font-face {
+  font-family: system;
+  font-style: normal;
+  font-weight: 300;
+  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "system";
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.error {
+  box-shadow: inset 0 0 0 1px red;
+}
+
+.project {
+  background: hsl(0, 0%, 80%);
+  width: 100%;
+  text-align: center;
+  padding: 0.8rem;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.project:hover {
+  cursor: pointer;
+  background: hsl(0, 0%, 70%);
+}
+
+.add-button {
+  width: 100%;
+  background: hsl(240, 50%, 80%);
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 0.8rem;
+}
+
+.add-button:hover {
+  background: hsl(240, 50%, 70%);
+}
+
+.text-input {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 0.8rem;
+}
+
+.cancel-button {
+  padding: 0.8rem;
+  font-size: 16px;
+}
+
+.confirm-button {
+  padding: 0.8rem;
+  font-size: 16px;
+}
+
+#container {
+  display: flex;
+  height: 100vh;
+}
+
+#sidebar {
+  background: hsl(0, 0%, 90%);
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 20px;
+  align-items: center;
+}
+
+#content-pane {
+  flex-grow: 1;
+}
+
+#add-project-form {
+  width: 100%;
+}
+
+#add-project-name-input {
+  margin-bottom: 10px;
+}
+
+#add-project-buttons-container {
+  display: flex;
+  gap: 10px;
+}
+
+#add-project-cancel-button, #add-project-confirm-button {
+  flex-grow: 1;
+}

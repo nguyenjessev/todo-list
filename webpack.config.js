@@ -8,12 +8,15 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  // plugins: [
-  //   new HtmlWebpackPlugin({
-  //     title: 'Todo List',
-  //   }),
-  // ],
   devServer: {
     static: './dist',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
 };

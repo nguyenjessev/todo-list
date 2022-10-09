@@ -1,5 +1,10 @@
-import viewController from './view_controller';
+import projectController from './project'
+import viewController from './view_controller'
 
 const todoApp = (() => {
-  viewController.init();
+  projectController.createProject('📨 Inbox');
+
+  viewController.addProjectsToSidebar();
+
+  viewController.createAddProjectButton();
 })();
