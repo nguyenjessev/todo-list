@@ -18,6 +18,11 @@ body {
   font-family: "system";
 }
 
+button {
+  border: none;
+  border-radius: 10px;
+}
+
 button:hover {
   cursor: pointer;
 }
@@ -33,6 +38,8 @@ button:hover {
   padding: 0.8rem;
   margin-bottom: 10px;
   border-radius: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .project:hover {
@@ -64,11 +71,21 @@ button:hover {
 .cancel-button {
   padding: 0.8rem;
   font-size: 16px;
+  background: hsl(0, 50%, 70%);
+}
+
+.cancel-button:hover {
+  background: hsl(0, 50%, 60%);
 }
 
 .confirm-button {
   padding: 0.8rem;
   font-size: 16px;
+  background: hsl(120, 50%, 70%);
+}
+
+.confirm-button:hover {
+  background: hsl(120, 50%, 60%);
 }
 
 #container {
