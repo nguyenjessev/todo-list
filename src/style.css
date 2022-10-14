@@ -107,6 +107,10 @@ button:hover {
   width: 100%;
 }
 
+#new-project-form {
+  width: 100%;
+}
+
 #content-pane {
   flex-grow: 1;
 }

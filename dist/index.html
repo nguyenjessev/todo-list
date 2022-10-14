@@ -10,7 +10,24 @@
     <div id="container">
       <div id="sidebar">
         <div id="project-list"></div>
+
+        <div id="new-project-form">
+          <button id="add-project-button" class="add-button">+ Add Project</button>
+
+          <div id="add-project-form" hidden>
+            <input type="text" id="add-project-name-input" class="text-input" placeholder="New Project Name">
+
+            <div id="add-project-buttons-container">
+              <button id="add-project-cancel-button" class="cancel-button">✕</button>
+
+              <button id="add-project-confirm-button" class="confirm-button">✓</button>
+            </div>
+
+            <div id="add-project-error-message"></div>
+          </div>
+        </div>
       </div>
+
       <div id="content-pane"></div>
     </div>
   </body>

@@ -2,7 +2,35 @@ import './style.css';
 import projectController from './project.js';
 
 export default (() => {
-  // Populates sidebar
+  // Add event listeners when DOM is ready
+  window.addEventListener('DOMContentLoaded', (e) => {
+    document.getElementById('add-project-button').addEventListener('click', () => {
+      showAddProjectForm();
+    });
+
+    document.getElementById('add-project-cancel-button').addEventListener('click', () => {
+      hideAddProjectForm();
+      showAddProjectButton();
+    });
+
+    document.getElementById('add-project-confirm-button').addEventListener('click', () => {
+      const newProjectNameInput = document.getElementById('add-project-name-input');
+      const newProjectName = newProjectNameInput.value;
+      const validationResult = projectController.validateProjectName(newProjectName);
+      if(validationResult.result == true) {
+        const newProject = projectController.project(newProjectName);
+        addProjectToSidebar(newProject);
+        hideAddProjectForm();
+        showAddProjectButton();
+      } else {
+        newProjectNameInput.classList.add('error');
+        document.getElementById('add-project-error-message').textContent = validationResult.message;
+      }
+    });
+  });
+
+
+  // Populates sidebar with a project
   const addProjectToSidebar = (project) => {
     const projectDiv = document.createElement('div');
     projectDiv.classList.add('project');
@@ -11,109 +39,32 @@ export default (() => {
     document.getElementById('project-list').appendChild(projectDiv);
   };
 
-  // Clears sidebar
-  const clearSidebar = () => {
-    const sidebar = document.getElementById('sidebar');
-
-    while(sidebar.firstChild) {
-      sidebar.removeChild(sidebar.firstChild);
-    }
-  };
-
-  // Creates and adds "+ New Project" button to sidebar
-  const createAddProjectButton = () => {
-    const addProjectButton = document.createElement('button');
-    addProjectButton.id = 'add-project-button';
-    addProjectButton.classList.add('add-button');
-    addProjectButton.textContent = '+ Add Project';
-    addProjectButton.addEventListener('click', () => createAddProjectForm());
-
-    document.getElementById('sidebar').appendChild(addProjectButton);
+  // Shows "+ New Project" button in sidebar
+  const showAddProjectButton = () => {
+    document.getElementById('add-project-button').hidden = false;
   };
 
   // Hides the "+ New Project" button from sidebar
-  const destroyAddProjectButton = () => {
-    const addProjectButton = document.getElementById('add-project-button');
-    if(addProjectButton === null) return;
+  const hideAddProjectButton = () => {
+    document.getElementById('add-project-button').hidden = true;
+  };
 
-    addProjectButton.remove();
-  }
-
-  const createAddProjectForm = () => {
-    destroyAddProjectButton();
-    const addProjectForm = document.createElement('div');
-    addProjectForm.id = 'add-project-form';
-    
-    // Text input
-    const addProjectNameInput = document.createElement('input');
-    addProjectNameInput.id = 'add-project-name-input';
-    addProjectNameInput.classList.add('text-input');
-    addProjectNameInput.placeholder = 'New Project Name';
-    addProjectForm.appendChild(addProjectNameInput);
-
-    // Buttons container
-    const addProjectButtonsContainer = document.createElement('div');
-    addProjectButtonsContainer.id = 'add-project-buttons-container';
-    addProjectForm.appendChild(addProjectButtonsContainer);
-
-    // Cancel button
-    const addProjectCancelButton = document.createElement('button');
-    addProjectCancelButton.id = 'add-project-cancel-button';
-    addProjectCancelButton.classList.add('cancel-button');
-    addProjectCancelButton.textContent = '✕';
-    addProjectCancelButton.addEventListener('click', () => {
-      destroyAddProjectForm();
-      createAddProjectButton();
-    });
-    addProjectButtonsContainer.appendChild(addProjectCancelButton);
-
-    // Confirm button
-    const addProjectConfirmButton = document.createElement('button');
-    addProjectConfirmButton.id = 'add-project-confirm-button';
-    addProjectConfirmButton.classList.add('confirm-button');
-    addProjectConfirmButton.textContent = '✓';
-    addProjectConfirmButton.addEventListener('click', () => {
-      const newProjectName = document.getElementById('add-project-name-input').value;
-      const validationResult = projectController.validateProjectName(newProjectName);
-      if(validationResult.result == true) {
-        projectController.createProject(newProjectName);
-        clearSidebar();
-        addProjectsToSidebar();
-        destroyAddProjectForm();
-        createAddProjectButton();
-      } else {
-        addProjectNameInput.classList.add('error');
-        addProjectErrorMessage.textContent = validationResult.message;
-      }
-    });
-    addProjectButtonsContainer.appendChild(addProjectConfirmButton);
-
-    // Error message
-    const addProjectErrorMessage = document.createElement('div');
-    addProjectErrorMessage.id = 'add-project-error-message';
-    addProjectForm.appendChild(addProjectErrorMessage);
-
-    document.getElementById('sidebar').appendChild(addProjectForm);
+  // Shows the new project form
+  const showAddProjectForm = () => {
+    hideAddProjectButton();
+    const addProjectNameInput = document.getElementById('add-project-name-input');
+    addProjectNameInput.value = null;
+    document.getElementById('add-project-form').hidden = false;
     addProjectNameInput.focus();
-  }
+  };
 
-  const destroyAddProjectForm = () => {
-    const addProjectForm = document.getElementById('add-project-form');
-    if(addProjectForm == null) return;
-
-    addProjectForm.remove();
-  }
-
-  const clearContentPane = () => {
-    const contentPane = document.getElementById('content-pane');
-
-    while(contentPane.firstChild) {
-      contentPane.removeChild(contentPane.firstChild);
-    }
-  }
+  // Hides the new project form
+  const hideAddProjectForm = () => {
+    document.getElementById('add-project-error-message').textContent = null;
+    document.getElementById('add-project-form').hidden = true;
+  };
 
   return {
-    addProjectToSidebar,
-    createAddProjectButton
+    addProjectToSidebar
   };
 })();

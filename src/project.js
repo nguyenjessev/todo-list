@@ -1,33 +1,16 @@
-// const projects = [];
-
-import { validate } from "schema-utils";
-
-// const project = (name) => {
-//   return {
-//     name
-//   };
-// }
-
-// const createProject = (name) => {
-//   const newProject = project(name);
-//   projects.push(newProject);
-// }
-
 export default (() => {
   const projectList = [];
 
+  // Creates a new project and adds it to the project list
   const project = (name) => {
-    return {
-      name
-    }
+    const newProject = { name }
+
+    projectList.push(newProject);
+
+    return newProject;
   }
 
-  const createProject = (name) => {
-    console.log(project(name));
-    projectList.push(project(name));
-    console.log(projectList);
-  }
-
+  // Makes sure a project name is unique and not blank
   const validateProjectName = (name) => {
     if(!name) return { result: false, message: 'Name cannot be blank.' };
     if(projectList.find(p => p.name == name)) return { result: false, message: 'Name must be unique.' };
@@ -35,5 +18,5 @@ export default (() => {
     return { result: true, message: 'Project successfully created.' };
   }
 
-  return { projectList, createProject, validateProjectName };
+  return { projectList, project, validateProjectName };
 })();
