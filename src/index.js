@@ -4,7 +4,9 @@ import viewController from './view_controller'
 const todoApp = (() => {
   projectController.createProject('📨 Inbox');
 
-  viewController.addProjectsToSidebar();
+  for(const project of projectController.projectList) {
+    viewController.addProjectToSidebar(project);
+  }
 
   viewController.createAddProjectButton();
 })();

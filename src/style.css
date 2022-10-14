@@ -103,6 +103,10 @@ button:hover {
   align-items: center;
 }
 
+#project-list {
+  width: 100%;
+}
+
 #content-pane {
   flex-grow: 1;
 }

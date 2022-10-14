@@ -3,16 +3,12 @@ import projectController from './project.js';
 
 export default (() => {
   // Populates sidebar
-  const addProjectsToSidebar = () => {
-    for(const p of projectController.projectList) {
-      const project = document.createElement('div');
-      project.classList.add('project');
-      console.log(p);
-      console.log(p.name);
-      project.textContent = p.name;
+  const addProjectToSidebar = (project) => {
+    const projectDiv = document.createElement('div');
+    projectDiv.classList.add('project');
+    projectDiv.textContent = project.name;
 
-      document.getElementById('sidebar').appendChild(project);
-    }
+    document.getElementById('project-list').appendChild(projectDiv);
   };
 
   // Clears sidebar
@@ -22,7 +18,7 @@ export default (() => {
     while(sidebar.firstChild) {
       sidebar.removeChild(sidebar.firstChild);
     }
-  }
+  };
 
   // Creates and adds "+ New Project" button to sidebar
   const createAddProjectButton = () => {
@@ -117,7 +113,7 @@ export default (() => {
   }
 
   return {
-    addProjectsToSidebar,
+    addProjectToSidebar,
     createAddProjectButton
   };
 })();
