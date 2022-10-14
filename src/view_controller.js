@@ -51,6 +51,7 @@ export default (() => {
     hideAddProjectButton();
     const addProjectNameInput = document.getElementById('add-project-name-input');
     addProjectNameInput.value = null;
+    addProjectNameInput.classList.remove('error');
     document.getElementById('add-project-form').hidden = false;
     addProjectNameInput.focus();
   };
