@@ -14,21 +14,18 @@ export default (() => {
     });
 
     document.getElementById('add-project-confirm-button').addEventListener('click', () => {
-      const newProjectNameInput = document.getElementById('add-project-name-input');
-      const newProjectName = newProjectNameInput.value;
-      const validationResult = projectController.validateProjectName(newProjectName);
-      if(validationResult.result == true) {
-        const newProject = projectController.project(newProjectName);
-        addProjectToSidebar(newProject);
+      submitProjectName();
+    });
+
+    document.getElementById('add-project-name-input').addEventListener('keyup', (e) => {
+      if(e.key == 'Enter') {
+        submitProjectName();
+      } else if(e.key == 'Escape') {
         hideAddProjectForm();
         showAddProjectButton();
-      } else {
-        newProjectNameInput.classList.add('error');
-        document.getElementById('add-project-error-message').textContent = validationResult.message;
       }
     });
   });
-
 
   // Populates sidebar with a project
   const addProjectToSidebar = (project) => {
@@ -63,6 +60,21 @@ export default (() => {
     document.getElementById('add-project-error-message').textContent = null;
     document.getElementById('add-project-form').hidden = true;
   };
+
+  const submitProjectName = () => {
+    const newProjectNameInput = document.getElementById('add-project-name-input');
+    const newProjectName = newProjectNameInput.value.trim();
+    const validationResult = projectController.validateProjectName(newProjectName);
+    if(validationResult.result == true) {
+      const newProject = projectController.project(newProjectName);
+      addProjectToSidebar(newProject);
+      hideAddProjectForm();
+      showAddProjectButton();
+    } else {
+      newProjectNameInput.classList.add('error');
+      document.getElementById('add-project-error-message').textContent = validationResult.message;
+    }
+  }
 
   return {
     addProjectToSidebar

@@ -28,7 +28,7 @@ button:hover {
 }
 
 .error {
-  box-shadow: inset 0 0 0 1px red;
+  outline: 1px solid red;
 }
 
 .project {
@@ -60,7 +60,7 @@ button:hover {
   background: hsl(240, 50%, 70%);
 }
 
-.text-input {
+input[type="text"] {
   width: 100%;
   border: none;
   border-radius: 10px;
