@@ -1,5 +1,5 @@
 import './style.css';
-import projectController from './project.js';
+import projectController from './project_controller.js';
 
 export default (() => {
   // Add event listeners when DOM is ready

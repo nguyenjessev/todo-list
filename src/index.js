@@ -1,4 +1,4 @@
-import projectController from './project'
+import projectController from './project_controller'
 import viewController from './view_controller'
 
 const todoApp = (() => {
