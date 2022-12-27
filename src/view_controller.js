@@ -1,32 +1,7 @@
 import './style.css';
-import projectController from './project_controller.js';
+import projectController from './project_controller';
 
 export default (() => {
-  // Add event listeners when DOM is ready
-  window.addEventListener('DOMContentLoaded', (e) => {
-    document.getElementById('add-project-button').addEventListener('click', () => {
-      showAddProjectForm();
-    });
-
-    document.getElementById('add-project-cancel-button').addEventListener('click', () => {
-      hideAddProjectForm();
-      showAddProjectButton();
-    });
-
-    document.getElementById('add-project-confirm-button').addEventListener('click', () => {
-      submitProjectName();
-    });
-
-    document.getElementById('add-project-name-input').addEventListener('keyup', (e) => {
-      if(e.key == 'Enter') {
-        submitProjectName();
-      } else if(e.key == 'Escape') {
-        hideAddProjectForm();
-        showAddProjectButton();
-      }
-    });
-  });
-
   // Populates sidebar with a project
   const addProjectToSidebar = (project) => {
     const projectDiv = document.createElement('div');
@@ -66,7 +41,7 @@ export default (() => {
     const newProjectNameInput = document.getElementById('add-project-name-input');
     const newProjectName = newProjectNameInput.value.trim();
     const validationResult = projectController.validateProjectName(newProjectName);
-    if(validationResult.result == true) {
+    if(validationResult.result === true) {
       const newProject = projectController.project(newProjectName);
       addProjectToSidebar(newProject);
       hideAddProjectForm();
@@ -76,6 +51,31 @@ export default (() => {
       document.getElementById('add-project-error-message').textContent = validationResult.message;
     }
   }
+
+  // Add event listeners when DOM is ready
+  window.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('add-project-button').addEventListener('click', () => {
+      showAddProjectForm();
+    });
+
+    document.getElementById('add-project-cancel-button').addEventListener('click', () => {
+      hideAddProjectForm();
+      showAddProjectButton();
+    });
+
+    document.getElementById('add-project-confirm-button').addEventListener('click', () => {
+      submitProjectName();
+    });
+
+    document.getElementById('add-project-name-input').addEventListener('keyup', (e) => {
+      if(e.key === 'Enter') {
+        submitProjectName();
+      } else if(e.key === 'Escape') {
+        hideAddProjectForm();
+        showAddProjectButton();
+      }
+    });
+  });
 
   return {
     addProjectToSidebar
