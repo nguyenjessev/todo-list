@@ -2,20 +2,24 @@
   font-family: system;
   font-style: normal;
   font-weight: 300;
-  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
+    local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
+    local("Roboto-Light"), local("DroidSans"), local("Tahoma");
 }
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *::after {
+*,
+*:before,
+*::after {
   box-sizing: inherit;
 }
 
 body {
-  margin: 0;
   font-family: "system";
+  margin: 0;
 }
 
 button {
@@ -33,27 +37,27 @@ button:hover {
 
 .project {
   background: hsl(0, 0%, 80%);
-  width: 100%;
-  text-align: center;
-  padding: 0.8rem;
-  margin-bottom: 10px;
   border-radius: 10px;
+  margin-bottom: 10px;
   overflow: hidden;
+  padding: 0.8rem;
+  text-align: center;
   text-overflow: ellipsis;
+  width: 100%;
 }
 
 .project:hover {
-  cursor: pointer;
   background: hsl(0, 0%, 70%);
+  cursor: pointer;
 }
 
 .add-button {
-  width: 100%;
   background: hsl(240, 50%, 80%);
   border: none;
   border-radius: 10px;
   font-size: 16px;
   padding: 0.8rem;
+  width: 100%;
 }
 
 .add-button:hover {
@@ -61,17 +65,17 @@ button:hover {
 }
 
 input[type="text"] {
-  width: 100%;
   border: none;
   border-radius: 10px;
   font-size: 16px;
   padding: 0.8rem;
+  width: 100%;
 }
 
 .cancel-button {
-  padding: 0.8rem;
-  font-size: 16px;
   background: hsl(0, 50%, 70%);
+  font-size: 16px;
+  padding: 0.8rem;
 }
 
 .cancel-button:hover {
@@ -79,9 +83,9 @@ input[type="text"] {
 }
 
 .confirm-button {
-  padding: 0.8rem;
-  font-size: 16px;
   background: hsl(120, 50%, 70%);
+  font-size: 16px;
+  padding: 0.8rem;
 }
 
 .confirm-button:hover {
@@ -94,13 +98,13 @@ input[type="text"] {
 }
 
 #sidebar {
+  align-items: center;
   background: hsl(0, 0%, 90%);
-  max-width: 300px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  max-width: 300px;
   padding: 20px;
-  align-items: center;
 }
 
 #project-list {
@@ -128,6 +132,7 @@ input[type="text"] {
   gap: 10px;
 }
 
-#add-project-cancel-button, #add-project-confirm-button {
+#add-project-cancel-button,
+#add-project-confirm-button {
   flex-grow: 1;
 }
