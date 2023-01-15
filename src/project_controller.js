@@ -1,9 +1,13 @@
 export default (() => {
   const projectList = [];
+  let activeProject = null;
 
   // Creates a new project and adds it to the project list
   const project = (name) => {
-    const newProject = { name };
+    const newProject = {
+      name,
+      tasks: [],
+    };
 
     projectList.push(newProject);
 
@@ -19,5 +23,21 @@ export default (() => {
     return { result: true, message: "Project successfully created." };
   };
 
-  return { projectList, project, validateProjectName };
+  const setActiveProject = (name) => {
+    const result = projectList.find((element) => element.name === name);
+
+    if (result !== undefined) {
+      activeProject = result;
+    }
+  };
+
+  const getActiveProject = () => activeProject;
+
+  return {
+    projectList,
+    project,
+    validateProjectName,
+    setActiveProject,
+    getActiveProject,
+  };
 })();
