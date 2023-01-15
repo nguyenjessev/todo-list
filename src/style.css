@@ -135,23 +135,47 @@ input[type="text"] {
 }
 
 #content-pane {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  justify-content: center;
+  padding: 0 15%;
 }
 
 #add-project-form {
   width: 100%;
 }
 
-#add-project-name-input {
+#add-project-name-input,
+#new-task-name-input {
   margin-bottom: 10px;
 }
 
-#add-project-buttons-container {
+#add-project-buttons-container,
+#new-task-buttons-container {
   display: flex;
   gap: 10px;
 }
 
 #add-project-cancel-button,
-#add-project-confirm-button {
+#add-project-confirm-button,
+#new-task-cancel-button,
+#new-task-confirm-button {
   flex-grow: 1;
+}
+
+#tasks,
+#new-task {
+  width: 100%;
+}
+
+#new-task[data-form="closed"] > #new-task-form,
+#new-task[data-form="open"] > #new-task-button {
+  display: none;
+}
+
+#new-task[data-form="open"] > #new-task-form,
+#new-task[data-form="closed"] > #new-task-button {
+  display: block;
 }

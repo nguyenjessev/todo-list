@@ -28,7 +28,25 @@
         </div>
       </div>
 
-      <div id="content-pane"></div>
+      <div id="content-pane">
+        <div id="tasks"></div>
+
+        <div id="new-task" data-form="closed">
+          <button id="new-task-button" class="add-button">+ Add Task</button>
+
+          <div id="new-task-form">
+            <input type="text" id="new-task-name-input" class="text-input" placeholder="New Task Name">
+
+            <div id="new-task-buttons-container">
+              <button id="new-task-cancel-button" class="cancel-button">✕</button>
+
+              <button id="new-task-confirm-button" class="confirm-button">✓</button>
+            </div>
+
+            <div id="new-task-error-message"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
