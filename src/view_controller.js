@@ -3,16 +3,6 @@ import projectController from "./project_controller";
 import taskController from "./task_controller";
 
 export default (() => {
-  // Populates sidebar with a project
-  const addProjectToSidebar = (project) => {
-    const projectDiv = document.createElement("div");
-    projectDiv.id = project.name;
-    projectDiv.classList.add("project");
-    projectDiv.textContent = project.name;
-
-    document.getElementById("project-list").appendChild(projectDiv);
-  };
-
   // Shows "+ New Project" button in sidebar
   const showAddProjectButton = () => {
     document.getElementById("add-project-button").hidden = false;
@@ -60,6 +50,20 @@ export default (() => {
     });
   };
 
+  // Populates sidebar with a project
+  const addProjectToSidebar = (project) => {
+    const projectDiv = document.createElement("div");
+    projectDiv.id = project.name;
+    projectDiv.classList.add("project");
+    projectDiv.textContent = project.name;
+    projectDiv.addEventListener("click", () => {
+      projectController.setActiveProject(project.name);
+      showActiveProject();
+    });
+
+    document.getElementById("project-list").appendChild(projectDiv);
+  };
+  
   const submitProjectName = () => {
     const newProjectNameInput = document.getElementById(
       "add-project-name-input"
