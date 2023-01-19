@@ -111,6 +111,42 @@ input[type="text"] {
   background: var(--confirm-hover);
 }
 
+.task {
+  align-items: center;
+  border-radius: 10px;
+  display: flex;
+  gap: 2vmin;
+  padding: 0.8rem;
+  width: 100%;
+}
+
+.task > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task:hover {
+  background: var(--project-button-bg);
+}
+
+.task:hover > .task-button {
+  border-color: var(--font-color);
+}
+
+.task-button {
+  border: 4px solid var(--project-button-hover);
+  border-radius: 6vmin;
+  flex-shrink: 0;
+  height: 6vmin;
+  width: 6vmin;
+}
+
+.task-button:hover {
+  background: var(--font-color);
+  cursor: pointer;
+}
+
 #container {
   display: flex;
   height: 100vh;
@@ -123,6 +159,7 @@ input[type="text"] {
   flex-direction: column;
   flex-grow: 1;
   max-width: 300px;
+  min-width: 240px;
   padding: 20px;
 }
 
@@ -136,6 +173,7 @@ input[type="text"] {
 
 #content-pane {
   flex-grow: 1;
+  max-width: 80%;
   padding: 0 10%;
 }
 
@@ -159,6 +197,10 @@ input[type="text"] {
 #new-task-cancel-button,
 #new-task-confirm-button {
   flex-grow: 1;
+}
+
+#tasks {
+  margin-bottom: 4vmin;
 }
 
 #tasks,
