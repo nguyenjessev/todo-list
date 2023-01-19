@@ -160,6 +160,7 @@ input[type="text"] {
   flex-grow: 1;
   max-width: 300px;
   min-width: 240px;
+  overflow: scroll;
   padding: 20px;
 }
 
