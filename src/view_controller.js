@@ -37,6 +37,10 @@ export default (() => {
 
     const taskButton = document.createElement('div');
     taskButton.classList.add('task-button');
+    taskButton.addEventListener('click', () => {
+      projectController.completeTask(task);
+      taskDiv.remove();
+    });
     taskDiv.appendChild(taskButton);
 
     const taskName = document.createElement('span');
