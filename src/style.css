@@ -19,6 +19,7 @@
   --project-button-bg: hsl(0, 0%, 30%);
   --project-button-hover: hsl(0, 0%, 40%);
   --sidebar-bg: hsl(0, 0%, 15%);
+  --input-bg: hsl(0, 0%, 20%);
 }
 
 html {
@@ -45,6 +46,12 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+input {
+  background: var(--input-bg);
+  color: white;
+  outline: 0;
 }
 
 .error {
@@ -127,11 +134,11 @@ input[type="text"] {
 }
 
 .task:hover {
-  background: var(--project-button-bg);
+  background: var(--input-bg);
 }
 
 .task:hover > .task-button {
-  border-color: var(--font-color);
+  /* border-color: var(--font-color); */
 }
 
 .task-button {
@@ -143,7 +150,7 @@ input[type="text"] {
 }
 
 .task-button:hover {
-  background: var(--font-color);
+  background: var(--project-button-bg);
   cursor: pointer;
 }
 
