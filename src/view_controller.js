@@ -102,8 +102,13 @@ export default (() => {
 
     newTaskPane.dataset.form = 'open';
 
+    // Reset form
+    const newTaskNameInput = document.getElementById('new-task-name-input');
     document.getElementById('new-task-error-message').textContent = '';
-    document.getElementById('new-task-name-input').value = '';
+    newTaskNameInput.value = '';
+    newTaskNameInput.classList.remove('error');
+    document.getElementById('new-task-priority').value = 'none';
+
     document.getElementById('new-task-name-input').focus();
   };
 

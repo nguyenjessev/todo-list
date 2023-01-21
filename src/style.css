@@ -20,6 +20,7 @@
   --project-button-hover: hsl(0, 0%, 40%);
   --sidebar-bg: hsl(0, 0%, 15%);
   --input-bg: hsl(0, 0%, 20%);
+  --label-font-color: hsl(0, 0%, 80%);
 }
 
 html {
@@ -54,6 +55,12 @@ input {
   outline: 0;
 }
 
+label {
+  color: var(--label-font-color);
+  font-size: 0.8rem;
+  margin-bottom: 0.2vmin;
+}
+
 .error {
   outline: 1px solid red;
 }
@@ -61,7 +68,7 @@ input {
 .project {
   background: var(--project-button-bg);
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 1vmin;
   overflow: hidden;
   padding: 0.8rem;
   text-align: center;
@@ -137,10 +144,6 @@ input[type="text"] {
   background: var(--input-bg);
 }
 
-.task:hover > .task-button {
-  /* border-color: var(--font-color); */
-}
-
 .task-button {
   border: 0.2rem solid var(--project-button-hover);
   border-radius: 100%;
@@ -152,6 +155,20 @@ input[type="text"] {
 .task-button:hover {
   background: var(--project-button-bg);
   cursor: pointer;
+}
+
+.new-task-form-inputs {
+  display: flex;
+  gap: 1vmin;
+}
+
+.new-task-name-form-group {
+  flex-grow: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
 }
 
 #container {
@@ -189,15 +206,11 @@ input[type="text"] {
   width: 100%;
 }
 
-#add-project-name-input,
-#new-task-name-input {
-  margin-bottom: 10px;
-}
-
 #add-project-buttons-container,
 #new-task-buttons-container {
   display: flex;
   gap: 10px;
+  margin-top: 1vmin;
 }
 
 #add-project-cancel-button,
@@ -211,7 +224,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1vmin;
 }
 
 #tasks,
@@ -231,4 +244,13 @@ input[type="text"] {
 
 #Inbox::before {
   content: "📨 ";
+}
+
+#new-task-priority {
+  background: var(--input-bg);
+  border: 0;
+  border-radius: 10px;
+  color: var(--font-color);
+  flex-grow: 1;
+  text-align: center;
 }
