@@ -1,8 +1,10 @@
 export default (() => {
   // Creates a new task
-  const task = (name) => {
+  const task = (taskData) => {
     const newTask = {
-      name,
+      name: taskData.name,
+      priority: taskData.priority,
+      description: taskData.description,
     };
 
     return newTask;

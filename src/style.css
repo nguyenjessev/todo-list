@@ -16,11 +16,15 @@
   --confirm-bg: hsl(120, 40%, 40%);
   --confirm-hover: hsl(120, 50%, 50%);
   --font-color: white;
-  --project-button-bg: hsl(0, 0%, 30%);
-  --project-button-hover: hsl(0, 0%, 40%);
+  --secondary-font-color: hsl(0, 0%, 80%);
+  --project-button-bg: hsl(0, 0%, 20%);
+  --project-button-hover: hsl(0, 0%, 30%);
   --sidebar-bg: hsl(0, 0%, 15%);
   --input-bg: hsl(0, 0%, 20%);
-  --label-font-color: hsl(0, 0%, 80%);
+  --high-priority: hsl(0, 50%, 50%);
+  --medium-priority: hsl(60, 50%, 50%);
+  --low-priority: hsl(120, 50%, 50%);
+  --task-button-border: hsl(0, 0%, 40%);
 }
 
 html {
@@ -49,14 +53,16 @@ button:hover {
   cursor: pointer;
 }
 
-input {
+input,
+textarea {
   background: var(--input-bg);
   color: white;
+  font-family: inherit;
   outline: 0;
 }
 
 label {
-  color: var(--label-font-color);
+  color: var(--secondary-font-color);
   font-size: 0.8rem;
   margin-bottom: 0.2vmin;
 }
@@ -95,7 +101,7 @@ label {
   background: var(--add-button-hover);
 }
 
-input[type="text"] {
+.text-input {
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -130,6 +136,7 @@ input[type="text"] {
   border-radius: 10px;
   display: flex;
   gap: 2vmin;
+  height: 5vmin;
   padding: 0.8rem;
   width: 100%;
 }
@@ -145,30 +152,67 @@ input[type="text"] {
 }
 
 .task-button {
-  border: 0.2rem solid var(--project-button-hover);
+  border: 0.2rem solid var(--task-button-border);
   border-radius: 100%;
   flex-shrink: 0;
   height: 1.5rem;
   width: 1.5rem;
 }
 
+.task.priority-high > .task-button {
+  border-color: var(--high-priority);
+}
+
+.task.priority-medium > .task-button {
+  border-color: var(--medium-priority);
+}
+
+.task.priority-low > .task-button {
+  border-color: var(--low-priority);
+}
+
 .task-button:hover {
-  background: var(--project-button-bg);
+  background: var(--project-button-hover);
   cursor: pointer;
 }
 
-.new-task-form-inputs {
+#new-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1vmin;
+}
+
+.new-task-form-row {
   display: flex;
   gap: 1vmin;
 }
 
-.new-task-name-form-group {
+.form-group {
   flex-grow: 1;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
+}
+
+.task-text {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.task-name,
+.task-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-description {
+  color: var(--secondary-font-color);
+  font-size: 0.8rem;
 }
 
 #container {
@@ -203,14 +247,19 @@ input[type="text"] {
 }
 
 #add-project-form {
+  flex-direction: column;
+  gap: 1vmin;
   width: 100%;
+}
+
+#add-project-buttons-container {
+  margin-top: 1vmin;
 }
 
 #add-project-buttons-container,
 #new-task-buttons-container {
   display: flex;
   gap: 10px;
-  margin-top: 1vmin;
 }
 
 #add-project-cancel-button,
@@ -237,7 +286,10 @@ input[type="text"] {
   display: none;
 }
 
-#new-task[data-form="open"] > #new-task-form,
+#new-task[data-form="open"] > #new-task-form {
+  display: flex;
+}
+
 #new-task[data-form="closed"] > #new-task-button {
   display: block;
 }
@@ -252,5 +304,9 @@ input[type="text"] {
   border-radius: 10px;
   color: var(--font-color);
   flex-grow: 1;
-  text-align: center;
+  padding-left: 2vmin;
+}
+
+#new-task-priority:hover {
+  cursor: pointer;
 }

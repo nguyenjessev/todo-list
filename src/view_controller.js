@@ -35,6 +35,20 @@ export default (() => {
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task');
 
+    switch (task.priority) {
+      case 'high':
+        taskDiv.classList.add('priority-high');
+        break;
+      case 'medium':
+        taskDiv.classList.add('priority-medium');
+        break;
+      case 'low':
+        taskDiv.classList.add('priority-low');
+        break;
+      default:
+        taskDiv.classList.add('priority-none');
+    }
+
     const taskButton = document.createElement('div');
     taskButton.classList.add('task-button');
     taskButton.addEventListener('click', () => {
@@ -43,9 +57,20 @@ export default (() => {
     });
     taskDiv.appendChild(taskButton);
 
+    const taskText = document.createElement('div');
+    taskText.classList.add('task-text');
+
     const taskName = document.createElement('span');
+    taskName.classList.add('task-name');
     taskName.textContent = task.name;
-    taskDiv.appendChild(taskName);
+    taskText.appendChild(taskName);
+
+    const taskDescription = document.createElement('span');
+    taskDescription.classList.add('task-description');
+    taskDescription.textContent = task.description;
+    taskText.appendChild(taskDescription);
+
+    taskDiv.appendChild(taskText);
 
     document.getElementById('tasks').appendChild(taskDiv);
   };
@@ -108,6 +133,7 @@ export default (() => {
     newTaskNameInput.value = '';
     newTaskNameInput.classList.remove('error');
     document.getElementById('new-task-priority').value = 'none';
+    document.getElementById('new-task-description-input').value = '';
 
     document.getElementById('new-task-name-input').focus();
   };
@@ -121,9 +147,15 @@ export default (() => {
   const submitNewTask = () => {
     const newTaskNameInput = document.getElementById('new-task-name-input');
     const newTaskName = newTaskNameInput.value.trim();
+    const newTaskPriority = document.getElementById('new-task-priority').value;
+    const newTaskDescription = document.getElementById('new-task-description-input').value;
 
     if (newTaskName !== '') {
-      const newTask = taskController.task(newTaskName);
+      const newTask = taskController.task({
+        name: newTaskName,
+        priority: newTaskPriority,
+        description: newTaskDescription,
+      });
 
       projectController.getActiveProject().tasks.push(newTask);
 
