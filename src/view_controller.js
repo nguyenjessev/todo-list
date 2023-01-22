@@ -1,4 +1,10 @@
 import './style.css';
+import {
+  format,
+  formatDistanceToNow,
+  differenceInCalendarDays,
+  isToday,
+} from 'date-fns';
 import projectController from './project_controller';
 import taskController from './task_controller';
 
@@ -31,8 +37,28 @@ export default (() => {
     document.getElementById('add-project-form').hidden = true;
   };
 
+  const formatTaskDueDate = (task) => {
+    const dayDifference = differenceInCalendarDays(task.dueDate, Date.now());
+    if (isToday(task.dueDate)) {
+      return 'Today';
+    }
+    if (dayDifference === -1 || dayDifference === 1) {
+      return dayDifference === 1 ? 'Tomorrow' : 'Yesterday';
+    }
+    if (Math.abs(dayDifference) < 7) {
+      let result = `${Math.abs(dayDifference)} days`;
+      if (dayDifference < 0) result += ' ago';
+
+      return result;
+    }
+    if (dayDifference >= 30) {
+      return formatDistanceToNow(task.dueDate);
+    }
+
+    return format(task.dueDate, 'PP');
+  };
+
   const addTaskToTaskList = (task) => {
-    console.log(task);
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task');
 
@@ -72,11 +98,25 @@ export default (() => {
     taskText.appendChild(taskDescription);
 
     taskDiv.appendChild(taskText);
+    if (task.dueDate) {
+      const taskDueDate = document.createElement('div');
+      const dayDifference = differenceInCalendarDays(task.dueDate, Date.now());
+      const isOverdue = dayDifference < 0;
+      taskDueDate.classList.add('task-due-date');
 
-    const taskDueDate = document.createElement('div');
-    taskDueDate.classList.add('task-due-date');
-    taskDueDate.textContent = task.dueDate;
-    taskDiv.appendChild(taskDueDate);
+      if (isOverdue) taskDueDate.classList.add('overdue');
+
+      taskDueDate.textContent = formatTaskDueDate(task);
+
+      taskDueDate.addEventListener('mouseenter', () => {
+        taskDueDate.textContent = format(task.dueDate, 'PP');
+      });
+      taskDueDate.addEventListener('mouseleave', () => {
+        taskDueDate.textContent = formatTaskDueDate(task);
+      });
+
+      taskDiv.appendChild(taskDueDate);
+    }
 
     document.getElementById('tasks').appendChild(taskDiv);
   };
@@ -163,8 +203,13 @@ export default (() => {
     const newTaskNameInput = document.getElementById('new-task-name-input');
     const newTaskName = newTaskNameInput.value.trim();
     const newTaskPriority = document.getElementById('new-task-priority').value;
-    const newTaskDueDate = document.getElementById('new-task-due-date').value;
-    console.log("Due Date: ", newTaskDueDate);
+    let newTaskDueDate = document.getElementById('new-task-due-date').value;
+    if (newTaskDueDate) {
+      newTaskDueDate = new Date(newTaskDueDate);
+      newTaskDueDate = new Date(
+        newTaskDueDate.valueOf() + newTaskDueDate.getTimezoneOffset() * 60000
+      );
+    }
     const newTaskDescription = document.getElementById(
       'new-task-description-input'
     ).value;

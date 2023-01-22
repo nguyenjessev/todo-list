@@ -324,3 +324,7 @@ label {
   color: var(--secondary-font-color);
   font-style: italic;
 }
+
+.overdue {
+  color: red;
+}
