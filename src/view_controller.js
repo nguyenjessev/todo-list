@@ -32,6 +32,7 @@ export default (() => {
   };
 
   const addTaskToTaskList = (task) => {
+    console.log(task);
     const taskDiv = document.createElement('div');
     taskDiv.classList.add('task');
 
@@ -60,17 +61,22 @@ export default (() => {
     const taskText = document.createElement('div');
     taskText.classList.add('task-text');
 
-    const taskName = document.createElement('span');
+    const taskName = document.createElement('div');
     taskName.classList.add('task-name');
     taskName.textContent = task.name;
     taskText.appendChild(taskName);
 
-    const taskDescription = document.createElement('span');
+    const taskDescription = document.createElement('div');
     taskDescription.classList.add('task-description');
     taskDescription.textContent = task.description;
     taskText.appendChild(taskDescription);
 
     taskDiv.appendChild(taskText);
+
+    const taskDueDate = document.createElement('div');
+    taskDueDate.classList.add('task-due-date');
+    taskDueDate.textContent = task.dueDate;
+    taskDiv.appendChild(taskDueDate);
 
     document.getElementById('tasks').appendChild(taskDiv);
   };
@@ -137,10 +143,11 @@ export default (() => {
 
     // Reset form
     const newTaskNameInput = document.getElementById('new-task-name-input');
-    document.getElementById('new-task-error-message').textContent = '';
     newTaskNameInput.value = '';
     newTaskNameInput.classList.remove('error');
+    document.getElementById('new-task-error-message').textContent = '';
     document.getElementById('new-task-priority').value = 'none';
+    document.getElementById('new-task-due-date').value = '';
     document.getElementById('new-task-description-input').value = '';
 
     document.getElementById('new-task-name-input').focus();
@@ -156,6 +163,8 @@ export default (() => {
     const newTaskNameInput = document.getElementById('new-task-name-input');
     const newTaskName = newTaskNameInput.value.trim();
     const newTaskPriority = document.getElementById('new-task-priority').value;
+    const newTaskDueDate = document.getElementById('new-task-due-date').value;
+    console.log("Due Date: ", newTaskDueDate);
     const newTaskDescription = document.getElementById(
       'new-task-description-input'
     ).value;
@@ -165,6 +174,7 @@ export default (() => {
         name: newTaskName,
         priority: newTaskPriority,
         description: newTaskDescription,
+        dueDate: newTaskDueDate,
       });
 
       projectController.getActiveProject().tasks.push(newTask);

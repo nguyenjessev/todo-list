@@ -199,6 +199,7 @@ label {
 .task-text {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   max-width: 100%;
   overflow: hidden;
   white-space: nowrap;
@@ -317,4 +318,9 @@ label {
 
 .new-task-description-form-group {
   width: 100%;
+}
+
+.task-due-date {
+  color: var(--secondary-font-color);
+  font-style: italic;
 }

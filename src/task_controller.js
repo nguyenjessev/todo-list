@@ -5,6 +5,7 @@ export default (() => {
       name: taskData.name,
       priority: taskData.priority,
       description: taskData.description,
+      dueDate: taskData.dueDate,
     };
 
     return newTask;
