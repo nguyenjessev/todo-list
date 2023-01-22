@@ -2,9 +2,9 @@
   font-family: system;
   font-style: normal;
   font-weight: 300;
-  src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"),
-    local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"),
-    local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+  src: local('.SFNSText-Light'), local('.HelveticaNeueDeskInterface-Light'),
+    local('.LucidaGrandeUI'), local('Ubuntu Light'), local('Segoe UI Light'),
+    local('Roboto-Light'), local('DroidSans'), local('Tahoma');
 }
 
 :root {
@@ -40,7 +40,7 @@ html {
 body {
   background: var(--bg);
   color: var(--font-color);
-  font-family: "system";
+  font-family: 'system';
   margin: 0;
 }
 
@@ -105,7 +105,7 @@ label {
   background: var(--add-button-hover);
 }
 
-.text-input {
+.form-input {
   border: none;
   border-radius: 10px;
   font-size: 16px;
@@ -189,10 +189,6 @@ label {
 .new-task-form-row {
   display: flex;
   gap: 1vmin;
-}
-
-.form-group {
-  flex-grow: 1;
 }
 
 .form-group {
@@ -285,21 +281,21 @@ label {
   width: 100%;
 }
 
-#new-task[data-form="closed"] > #new-task-form,
-#new-task[data-form="open"] > #new-task-button {
+#new-task[data-form='closed'] > #new-task-form,
+#new-task[data-form='open'] > #new-task-button {
   display: none;
 }
 
-#new-task[data-form="open"] > #new-task-form {
+#new-task[data-form='open'] > #new-task-form {
   display: flex;
 }
 
-#new-task[data-form="closed"] > #new-task-button {
+#new-task[data-form='closed'] > #new-task-button {
   display: block;
 }
 
 #Inbox::before {
-  content: "📨 ";
+  content: '📨 ';
 }
 
 #new-task-priority {
@@ -308,9 +304,17 @@ label {
   border-radius: 10px;
   color: var(--font-color);
   flex-grow: 1;
-  padding-left: 2vmin;
+  padding-left: 1vmin;
 }
 
 #new-task-priority:hover {
   cursor: pointer;
+}
+
+.new-task-name-form-group {
+  flex-grow: 1;
+}
+
+.new-task-description-form-group {
+  width: 100%;
 }
