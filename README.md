@@ -2,10 +2,11 @@
 
 This is a basic todo list application.
 
-## Requirements
+## Features
 
-Allow for task creation, multiple projects, task deletion, due dates, and 
-priorities.
+* Allows creation of multiple projects
+* Allows each project to contain multiple tasks
+* Tasks have a name, as well as optional descriptions, priorities, and due dates
 
 ## What I Used
 
