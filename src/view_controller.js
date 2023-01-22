@@ -85,12 +85,20 @@ export default (() => {
     activeProject.tasks.forEach((task) => {
       addTaskToTaskList(task);
     });
+
+    document.querySelectorAll('.project').forEach((project) => {
+      project.classList.remove('active-project');
+    });
+
+    document
+      .querySelector(`.project[data-project=${activeProject.name}`)
+      .classList.add('active-project');
   };
 
   // Populates sidebar with a project
   const addProjectToSidebar = (project) => {
     const projectDiv = document.createElement('div');
-    projectDiv.id = project.name;
+    projectDiv.dataset.project = project.name;
     projectDiv.classList.add('project');
     projectDiv.textContent = project.name;
     projectDiv.addEventListener('click', () => {
@@ -148,7 +156,9 @@ export default (() => {
     const newTaskNameInput = document.getElementById('new-task-name-input');
     const newTaskName = newTaskNameInput.value.trim();
     const newTaskPriority = document.getElementById('new-task-priority').value;
-    const newTaskDescription = document.getElementById('new-task-description-input').value;
+    const newTaskDescription = document.getElementById(
+      'new-task-description-input'
+    ).value;
 
     if (newTaskName !== '') {
       const newTask = taskController.task({

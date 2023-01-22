@@ -87,6 +87,10 @@ label {
   cursor: pointer;
 }
 
+.active-project {
+  background: var(--project-button-hover);
+}
+
 .add-button {
   background: var(--add-button-bg);
   border: none;
