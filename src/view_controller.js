@@ -91,7 +91,7 @@ export default (() => {
     });
 
     document
-      .querySelector(`.project[data-project=${activeProject.name}`)
+      .querySelector(`.project[data-project="${activeProject.name}"]`)
       .classList.add('active-project');
   };
 
