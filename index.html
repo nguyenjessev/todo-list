@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Todo List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <div id="project-list"></div>
+
+        <div id="new-project-form">
+          <button id="add-project-button" class="add-button">+ Add Project</button>
+
+          <div id="add-project-form" hidden>
+            <input type="text" id="add-project-name-input" class="form-input" placeholder="New Project Name">
+
+            <div id="add-project-buttons-container">
+              <button id="add-project-cancel-button" class="cancel-button">✕</button>
+
+              <button id="add-project-confirm-button" class="confirm-button">✓</button>
+            </div>
+
+            <div id="add-project-error-message"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="content-pane">
+        <h1 id="project-name-header"></h1>
+
+        <div id="tasks"></div>
+
+        <div id="new-task" data-form="closed">
+          <button id="new-task-button" class="add-button">+ Add Task</button>
+
+          <div id="new-task-form">
+            <div class="new-task-form-row">
+              <div class="form-group new-task-name-form-group">
+                <label for="new-task-name-input">New Task Name</label>
+                <input type="text" id="new-task-name-input" class="form-input">
+              </div>
+
+              <div class="form-group">
+                <label for="new-task-priority">Priority</label>
+                <select id="new-task-priority" name="priority">
+                  <option value="none">None</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="new-task-due-date">Due Date</label>
+                <input type="date" name="new-task-due-date" id="new-task-due-date" class="form-input">
+              </div>
+            </div>
+
+            <div class="new-task-form-row">
+              <div class="form-group new-task-description-form-group">
+                <label for="new-task-description-input">Description</label>
+                <textarea name="new-task-description-input" id="new-task-description-input" class="form-input" cols="30" rows="10"></textarea>
+              </div>
+            </div>
+
+            <div id="new-task-buttons-container">
+              <button id="new-task-cancel-button" class="cancel-button">✕</button>
+
+              <button id="new-task-confirm-button" class="confirm-button">✓</button>
+            </div>
+
+            <div id="new-task-error-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
