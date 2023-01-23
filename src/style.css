@@ -295,7 +295,7 @@ label {
   display: block;
 }
 
-#Inbox::before {
+div[data-project="Inbox"]::before {
   content: '📨 ';
 }
 
