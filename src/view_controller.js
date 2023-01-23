@@ -4,7 +4,6 @@ import {
   formatDistanceToNow,
   differenceInCalendarDays,
   isToday,
-  parseISO,
 } from 'date-fns';
 import projectController from './project_controller';
 import taskController from './task_controller';
