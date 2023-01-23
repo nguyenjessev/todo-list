@@ -4,9 +4,11 @@ import {
   formatDistanceToNow,
   differenceInCalendarDays,
   isToday,
+  parseISO,
 } from 'date-fns';
 import projectController from './project_controller';
 import taskController from './task_controller';
+import storageController from './storage_controller';
 
 export default (() => {
   // Shows "+ New Project" button in sidebar
@@ -169,6 +171,7 @@ export default (() => {
       showActiveProject();
       hideAddProjectForm();
       showAddProjectButton();
+      storageController.saveProfile();
     } else {
       newProjectNameInput.classList.add('error');
       document.getElementById('add-project-error-message').textContent =
@@ -226,6 +229,7 @@ export default (() => {
 
       addTaskToTaskList(newTask);
       hideNewTaskForm();
+      storageController.saveProfile();
     } else {
       newTaskNameInput.classList.add('error');
       document.getElementById('new-task-error-message').textContent =

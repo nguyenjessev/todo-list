@@ -1,15 +1,17 @@
-import projectController from "./project_controller";
-import viewController from "./view_controller";
+import storageController from './storage_controller';
+import viewController from './view_controller';
+import projectController from './project_controller';
 
 (() => {
-  const inboxProject = projectController.project("Inbox");
+  if (!localStorage.getItem('savedProjects')) {
+    storageController.createNewProfile();
+  } else {
+    storageController.loadSavedProfile();
+  }
 
-  // Add all projects to the sidebar
-  projectController.projectList.forEach((project) => {
+  projectController.getProjectList().forEach((project) => {
     viewController.addProjectToSidebar(project);
   });
-
-  projectController.setActiveProject(inboxProject.name);
 
   viewController.showActiveProject();
 })();

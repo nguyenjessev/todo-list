@@ -37,12 +37,19 @@ export default (() => {
     activeProject.tasks.splice(activeProject.tasks.indexOf(task), 1);
   };
 
+  const addProjectToProjectList = (newProject) => {
+    projectList.push(newProject);
+  }
+
+  const getProjectList = () => projectList;
+
   return {
-    projectList,
     project,
     validateProjectName,
     setActiveProject,
     getActiveProject,
     completeTask,
+    addProjectToProjectList,
+    getProjectList,
   };
 })();
