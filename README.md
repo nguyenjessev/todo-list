@@ -1,3 +1,5 @@
+[Live Demo](https://nguyenjessev.github.io/todo-list/)
+
 # Todo List
 
 This is a basic todo list application.
